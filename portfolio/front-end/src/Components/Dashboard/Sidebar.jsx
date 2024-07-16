@@ -21,6 +21,7 @@ function Sidebar({ onUserClick, activeUser }) {
     <div className="sidebar container-fluid">
      
 <SidebarHeader/>
+<div className={`sidebar-item `} >Family Group</div>
       {users.map((user) => (
         <div
           key={user}

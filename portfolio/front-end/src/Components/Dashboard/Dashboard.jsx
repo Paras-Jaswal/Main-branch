@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import Portfolio from './Portfolio';
 import './Dash.scss';
+import Navbars from './Navbar';
 
 function Dashboard() {
   const [activeUser, setActiveUser] = useState('Family Group');
@@ -11,6 +12,9 @@ function Dashboard() {
   };
 
   return (
+    <>
+    <Navbars />
+
     <div className="app container-fluid">
       <div className='row'>
         <div className='col-2'>
@@ -23,6 +27,7 @@ function Dashboard() {
       </div>
       </div>
     </div>
+    </>
   );
 }
 

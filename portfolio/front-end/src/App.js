@@ -5,6 +5,7 @@ import Signup from './Components/Signup & Login/Signup';
 import Login from './Components/Signup & Login/Login';
 import Dashboard from './Components/Dashboard/Dashboard';
 import SignupforInvestor from './Components/Signup & Login/SignupforInvestor';
+import PrivateRoute from './Components/Signup & Login/PrivateRoute';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
    <Route path='/sign-up/investor' element={<Signup/>} />
    <Route path='/login' element={<Login/>} />
    <Route path='/sign-up/wealth' element={<SignupforInvestor/>} />
-   <Route path='/dashboard' element={<Dashboard/>} />
+   <Route path='/dashboard' element={<PrivateRoute element={<Dashboard/>} />} />
 
    </Routes>
    </>

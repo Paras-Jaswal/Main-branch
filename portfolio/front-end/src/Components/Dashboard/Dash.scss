@@ -4,8 +4,9 @@
     height:100vh;
 
   }
-  .container.text-center.pt-5 {
+  .login-form {
     background: #0023ff42;
+    height:100vh;
 }
   .col-10 {
     height:100vh;
@@ -128,3 +129,13 @@ position: sticky;
         margin-right:15px
        }
       }
+
+      // navbar
+      
+        .navbar {
+          background-color: #022b54;
+        .nav-link, .nav-item {
+          text-decoration: none;
+        color:white !important; 
+
+        }}

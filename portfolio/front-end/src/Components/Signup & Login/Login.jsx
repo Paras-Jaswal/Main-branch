@@ -51,7 +51,7 @@ const Login = (props) => {
   };
 
   return (
-    <div >
+    <div className='login-form'>
       <div className='container text-center pt-5'>
         <div className='col-lg-12'>
           <h2 className='text-primary'>Login Page</h2>
