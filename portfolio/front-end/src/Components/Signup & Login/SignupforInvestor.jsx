@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import Header from './Header';
+import Headers from './Headers';
 
 const SignupforInvestor = () => {
   const navigate = useNavigate()
@@ -34,7 +34,7 @@ const SignupforInvestor = () => {
   return (
     <>
       <section className='login-signup'>
-        <Header/>
+        <Headers/>
         <div className="container-fluid">
           <div className="row">
            
