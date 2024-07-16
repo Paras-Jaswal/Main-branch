@@ -38,7 +38,9 @@ function Navbars() {
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
+            <Nav.Item>
             <button className="btn "  type="button"  onClick={handleLogout}>Logout</button>
+            </Nav.Item>
 
             <Nav.Item>
 
