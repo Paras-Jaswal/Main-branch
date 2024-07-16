@@ -81,4 +81,17 @@
     text-align: left;
     border-style: none;
   }
-        
+        .navs.active {
+          color:#013d79 !important;
+        }
+
+        // Sidebar
+        .preview {
+          p, span {
+            font-size:14px;
+          }
+          p{
+            color:#022b54;
+            font-weight: 600;
+          }
+        }
