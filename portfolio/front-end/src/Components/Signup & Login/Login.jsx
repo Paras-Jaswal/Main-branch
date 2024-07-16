@@ -21,6 +21,8 @@ const Login = (props) => {
         });
       
         if (response.data.status === 'success') {
+          localStorage.setItem('authToken', response.data.token);
+          console.log(response.data.token)
           navigate('/dashboard')
         }
       } catch (error) {
