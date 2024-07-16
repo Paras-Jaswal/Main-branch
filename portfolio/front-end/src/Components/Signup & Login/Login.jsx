@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { isAuthenticated } from './auth';
+import { isAuthenticated } from '../Auth/Auth';
 const Login = (props) => {
   const navigate = useNavigate();
   const [user, setUser] = useState("");
@@ -9,7 +9,11 @@ const Login = (props) => {
   const [userErr, setUserErr] = useState(false);
   const [passErr, setPassErr] = useState(false);
   // If already authenticated, redirect to dashboard
-  
+  useEffect (()=>{
+    if (isAuthenticated()) {
+      navigate('/dashboard');
+    }
+  },[])
   const loginHandle = async (e) => {
     e.preventDefault();
     if (user.length < 3 || password.length < 3) {
@@ -52,9 +56,7 @@ const Login = (props) => {
     }
     setPassword(item);
   };
-  if (isAuthenticated()) {
-    navigate('/dashboard');
-  }
+ 
   return (
     <div className='login-form'>
       <div className='container text-center pt-5'>
