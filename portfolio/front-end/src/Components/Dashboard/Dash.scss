@@ -4,6 +4,9 @@
     height:100vh;
 
   }
+  .container.text-center.pt-5 {
+    background: #0023ff42;
+}
   .col-10 {
     height:100vh;
 
@@ -60,10 +63,10 @@
     border: 1px solid #ddd;
     border-radius: 10px;
   }
-  .table-row:nth-child(even) {
+  .table-row:nth-child(odd) {
     background-color: #f7f7f7;
   }  
-  .table-row:nth-child(odd) {
+  .table-row:nth-child(even) {
     background-color: white;
   }
   .table-row:hover {

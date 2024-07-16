@@ -17,6 +17,7 @@ function Dashboard() {
         <div className='col-2'>
               <Header />
       <Sidebar onUserClick={handleUserClick} activeUser={activeUser} />
+      
       </div>
 
       <div className="main-content col-10">
