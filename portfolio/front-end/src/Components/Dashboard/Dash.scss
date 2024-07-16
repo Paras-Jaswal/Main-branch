@@ -115,4 +115,16 @@ position: sticky;
             font-weight: 600;
           }
         }
-       
+       textarea {
+        resize:none;
+        width:auto
+       }
+       .popup {
+.modal-dialog-scrollable {
+  width: 5px; /* Width of the scrollbar */
+}
+        .label-name{
+        min-width:200px;
+        margin-right:15px
+       }
+      }
