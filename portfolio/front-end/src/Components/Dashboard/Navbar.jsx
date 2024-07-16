@@ -1,13 +1,21 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 import Button from 'react-bootstrap/esm/Button';
 
+
 function Navbars() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('authToken'); // Clear authToken from localStorage
+    navigate('/login'); // Redirect to login page
+  };
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -30,7 +38,10 @@ function Navbars() {
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
+            <button className="btn "  type="button"  onClick={handleLogout}>Logout</button>
+
             <Nav.Item>
+
             <button className="btn "  type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"  onClick={handleShow}>Import</button>
             {/* import popup */}
             <Modal
