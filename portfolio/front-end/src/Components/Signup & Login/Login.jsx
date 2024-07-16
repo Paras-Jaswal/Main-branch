@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Login = (props) => {
+  const navigate = useNavigate();
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [userErr, setUserErr] = useState(false);
@@ -20,7 +21,7 @@ const Login = (props) => {
         });
       
         if (response.data.status === 'success') {
-          window.location.href="/dashboard"
+          navigate('/dashboard')
         }
       } catch (error) {
         console.error('Error:', error);
@@ -53,7 +54,7 @@ const Login = (props) => {
     <div >
       <div className='container text-center pt-5'>
         <div className='col-lg-12'>
-          <h2>Login Page</h2>
+          <h2 className='text-primary'>Login Page</h2>
         </div>
         <div className='col-lg-12 py-5'>
           <form onSubmit={loginHandle}>
@@ -63,7 +64,7 @@ const Login = (props) => {
                   <input
                     type="text"
                     className='form-control ms-auto me-auto'
-                    placeholder='Enter your user id'
+                    placeholder='Enter your email'
                     onChange={userHandle}
                     style={{ width: '250px' }}
                   />
