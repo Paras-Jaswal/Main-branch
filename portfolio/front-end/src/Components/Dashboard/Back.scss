@@ -1,0 +1,112 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  .App {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+  }
+  
+  .sidebar {
+    width: 200px; /* Adjust width as needed */
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    background-color: white; /* Ensure it has a background color */
+  }
+  
+  .sidebar-item {
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 7px #d3d3d3;
+    margin: 10px 0;
+  }
+  
+  .sidebar-item.active {
+    background-color: yellow;
+  }
+  
+  .sidebar-item:hover {
+    background-color: #013d79;
+    color: white;
+    box-shadow: 0 0 7px #d3d3d3;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .portfolio {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .table-stock {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-stock th, .table-stock td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .table-stock th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  
+  .table-row:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .names {
+    background-color: #e5e5e5;
+    height: 20px;
+  }
+  
+  .bg-primary {
+    background-color: #001f3f;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .index {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #a9a9a9;
+    height: 50px;
+  }
+  
+  .table-row {
+    height: 50px;
+  }
+  
+  .portfolio .table-stock {
+    width: 100%;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: white; /* Ensure background is white */
+  }
+  
+  .table-row:hover {
+    background-color: #fff6d6;
+    cursor: pointer;
+  }
+  
+  .portfolio th, .portfolio td {
+    padding: 10px;
+    text-align: left;
+    border-style: none;
+  }
+  

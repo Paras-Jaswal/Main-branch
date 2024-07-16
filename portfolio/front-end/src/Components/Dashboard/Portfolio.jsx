@@ -26,13 +26,12 @@ function Portfolio({ activeUser }) {
   }
 
   return (
-    <div className="portfolio">
+    <div className="portfolio container-fluid">
       <table className="table-stock">
         <thead>
           <tr className="index ">
             <th>Stocks</th>
-            <th>Qty.</th>
-            <th>Avg. Pur. Price</th>
+            <th  className='text-end' colSpan={2}>Qty.<br/>Avg. Pur. Price</th>
             <th>Amt. Invested</th>
             <th>Current Price</th>
             <th>Today's Gain</th>
@@ -51,8 +50,9 @@ function Portfolio({ activeUser }) {
           {data.map((item, index) => (
             <tr className='table-row' key={index}>
               <td>{item.name}</td>
-              <td>{item.qty}</td>
-              <td>{item.avgPrice.toFixed(2)}</td>
+              <td colSpan={2} className='text-end'> {item.qty}
+                <hr className='m-0 p-0'/>
+              {item.avgPrice.toFixed(2)}</td>
               <td>{item.invested.toFixed(2)}</td>
               <td>{item.currentPrice.toFixed(2)}</td>
               <td>{item.todaysGain.toFixed(2)}</td>
@@ -60,7 +60,9 @@ function Portfolio({ activeUser }) {
               <td>{item.currentValue.toFixed(2)}</td>
             </tr>
           ))}
+         
         </tbody>
+       
       </table>
     </div>
   );
