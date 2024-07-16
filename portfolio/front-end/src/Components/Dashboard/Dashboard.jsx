@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import Portfolio from './Portfolio';
-import Header from './Header';
 import './Dash.scss';
 
 function Dashboard() {
@@ -15,7 +14,6 @@ function Dashboard() {
     <div className="app container-fluid">
       <div className='row'>
         <div className='col-2'>
-              <Header />
       <Sidebar onUserClick={handleUserClick} activeUser={activeUser} />
       </div>
 
