@@ -3,16 +3,38 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Collapse from 'react-bootstrap/Collapse';
 import SidebarHeader from "./SidebarHeader";
+import axios from 'axios'
 
 function Sidebar({ onUserClick, activeUser }) {
   const users = ["Family Group", "User", "User1", "User4", "user3"];
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
+  const [portfolioName, setPortfolioName] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
+  const [fullName, setFullName] = useState('');
+  const [strategyGoal, setStrategyGoal] = useState('');
+  const handleSave = async () => {
+    const data = {
+      portfolio_name: portfolioName,
+      full_name: fullName,
+      strategy_goal: isChecked ? strategyGoal : ''
+    };
 
+    try {
+      const response = await axios.post('http://localhost/portfolio/backend/save_portfolio_user.php', data);
+      console.log(response.data);
+      // handle success, show a success message or close modal
+      handleClose();
+    } catch (error) {
+      console.error('There was an error saving the data!', error);
+      // handle error, show an error message
+    }
+  };
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [isChecked, setIsChecked] = useState(false);
-
+  const handleStrategyGoalChange = (event) => {
+    setStrategyGoal(event.target.value);
+  };
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
@@ -21,7 +43,6 @@ function Sidebar({ onUserClick, activeUser }) {
     <div className="sidebar container-fluid">
      
 <SidebarHeader/>
-<div className={`sidebar-item `} >Family Group</div>
       {users.map((user) => (
         <div
           key={user}
@@ -44,11 +65,11 @@ function Sidebar({ onUserClick, activeUser }) {
           <form>
             <div className="col-12 d-flex   my-2">
             <label className="label-name">Portfolio Name *</label>
-            <input type="text " required />
+            <input type="text " required value={portfolioName} onChange={(e) => setPortfolioName(e.target.value)} />
             </div>
             <div className="col-12 d-flex    my-2">
             <label className="label-name">Full Name</label>
-            <input type="text " required />
+            <input type="text " required  value={fullName} onChange={(e) => setFullName(e.target.value)} />
             </div>
             <div className="col-12 d-flex  my-2 ">
             <label className="label-name" for="flexCheckDefault">Strategy / Goal Portfolio </label>
@@ -65,6 +86,8 @@ function Sidebar({ onUserClick, activeUser }) {
               type="radio"
               name="strategyGoal"
               id="strategyGoal"
+              value="Strategy"
+              onChange={handleStrategyGoalChange}
             />
             <label className="form-check-label" htmlFor="strategyGoal">
               Strategy 
@@ -74,8 +97,10 @@ function Sidebar({ onUserClick, activeUser }) {
             <input
               className="form-check-input"
               type="radio"
+              value="Goal"
               name="strategyGoal"
               id="strategyGoal"
+              onChange={handleStrategyGoalChange}
             />
             <label className="form-check-label" htmlFor="strategyGoal">
               Goal 
@@ -126,7 +151,7 @@ function Sidebar({ onUserClick, activeUser }) {
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleSave}>
             Save
           </Button>
         </Modal.Footer>
