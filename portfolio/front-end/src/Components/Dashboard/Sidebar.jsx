@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import Collapse from 'react-bootstrap/Collapse';
+import SidebarHeader from "./SidebarHeader";
 
 function Sidebar({ onUserClick, activeUser }) {
   const users = ["Family Group", "User", "User1", "User4", "user3"];
   const [show, setShow] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -16,28 +19,8 @@ function Sidebar({ onUserClick, activeUser }) {
 
   return (
     <div className="sidebar container-fluid">
-      <div className="row p-0 pb-4 preview">
-        <div className="col-6">
-          <p className="p-0 m-0">Sensex</p></div>
-        <div className="col-6 text-success"><span>+0.19%</span></div>
-        <div className="col-6 ">
-          <span>80540</span>
-        </div>
-        <div className="col-6 pb-2 text-success">
-          <span>+169</span>
-        </div>
-      <hr className="my-1" />
-      <div className="col-6 m-0">
-          <p className="p-0 m-0">Nifty:</p></div>
-        <div className="col-6 text-success"><span>+0.13%</span></div>
-        <div className="col-6">
-          <span>50540</span>
-        </div>
-        <div className="col-6 text-success">
-          <span>+130</span>
-        </div>
-      </div>
-
+     
+<SidebarHeader/>
       {users.map((user) => (
         <div
           key={user}
@@ -48,31 +31,32 @@ function Sidebar({ onUserClick, activeUser }) {
         </div>
       ))}
       <button className="btn "  type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleShow}><span className="plus">+</span> Add Portfolio</button>
+     
       {/* Popup */}
-      <Modal show={show} onHide={handleClose}    backdrop="static"
+      <Modal  dialogClassName="modal-dialog-scrollable" show={show} onHide={handleClose}    backdrop="static"
         keyboard={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Add Portfolio User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="container popup">
           <form>
-            <div className="col-12 d-flex justify-content-between column-gap-2  my-2">
-            <label>Portfolio Name *</label>
+            <div className="col-12 d-flex   my-2">
+            <label className="label-name">Portfolio Name *</label>
             <input type="text " required />
             </div>
-            <div className="col-12 d-flex justify-content-between  column-gap-4 my-2">
-            <label>Full Name</label>
+            <div className="col-12 d-flex    my-2">
+            <label className="label-name">Full Name</label>
             <input type="text " required />
             </div>
-            <div className="col-12 d-flex column-gap-2 my-2 ">
-            <label for="flexCheckDefault">Strategy / Goal Portfolio </label>
+            <div className="col-12 d-flex  my-2 ">
+            <label className="label-name" for="flexCheckDefault">Strategy / Goal Portfolio </label>
             <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked={isChecked}
           onChange={handleCheckboxChange} />
             </div>
             {isChecked && (
-        <div className="col-12 d-flex justify-content-between column-gap-2 my-2 " id="additionalInputs">
-          <label>Type</label>
+        <div className="col-12 d-flex  my-2 " id="additionalInputs">
+          <label className="label-name">Type</label>
           <div className="d-flex column-gap-3" >
           <div className="form-check">
             <input
@@ -100,6 +84,39 @@ function Sidebar({ onUserClick, activeUser }) {
           
         </div>
       )}
+       <Button
+        onClick={() => setOpen(!open)}
+        variant="none"
+        aria-controls="example-collapse-text"
+        aria-expanded={open}
+      >
+       <p className="text-primary-emphasis"> + Additional Information</p>
+      </Button>
+      {/* inner Form */}
+      <Collapse in={open}>
+      <div className="row">
+      <div className="col-12 d-flex   my-2">
+            <label className="label-name">Address</label>
+            <textarea />
+            </div>
+            <div className="col-12 d-flex  my-2">
+            <label className="label-name">City</label>
+            <input type="text "  />
+            </div>
+              <div className="col-12 d-flex  my-2">
+            <label className="label-name">Country</label>
+            <input type="text "  />
+            </div>
+            <div className="col-12 d-flex   my-2">
+            <label className="label-name">Pincode</label>
+            <input type="text "  />
+            </div>
+            <div className="col-12 d-flex   my-2">
+            <label className="label-name">Country</label>
+            <input type="text "  />
+            </div>
+            </div>
+      </Collapse>
           </form>
           </div>
          
