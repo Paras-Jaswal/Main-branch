@@ -24,7 +24,10 @@ const Signup = () => {
         },
       });
       alert(response.data.message);
+      if(response.data.status == 'success'){
       navigate('/login')
+      }
+
       reset(); // Reset the form after successful submission
     } catch (error) {
       console.error('Error:', error);
