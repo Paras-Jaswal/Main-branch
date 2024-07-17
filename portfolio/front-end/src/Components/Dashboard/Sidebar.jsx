@@ -52,7 +52,12 @@ function Sidebar({ onUserClick, activeUser }) {
           <p>{user}</p>
         </div>
       ))}
-      <button className="btn "  type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleShow}><span className="plus">+</span> Add Portfolio</button>
+   
+      <button className="btn "  type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleShow}>
+      <div className="d-flex justify-content-between">
+      <span className="plus">+</span>
+      <p className="text"> Add Portfolio</p>
+        </div></button>
      
       {/* Popup */}
       <Modal  dialogClassName="modal-dialog-scrollable" show={show} onHide={handleClose}    backdrop="static"

@@ -131,11 +131,14 @@ position: sticky;
       }
 
       // navbar
-      
+      .text {
+        font-size: 14px;
+      }
         .navbar {
           background-color: #022b54;
-        .nav-link, .nav-item {
+        .nav-link, .btn {
           text-decoration: none;
         color:white !important; 
 
-        }}
+        }
+      }
