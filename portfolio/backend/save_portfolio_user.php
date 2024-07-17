@@ -1,45 +1,43 @@
 <?php
+session_start();
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Credentials: true");
 
+include 'connection.php';
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
-// WordPress environment ko include karna (agar zarurat ho)
-require_once('wp-load.php');
-global $wpdb;
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    print_r($_SESSION);
+
+    if (!isset($_SESSION['user_id'])) {
+        echo json_encode(['status' => 'error', 'message' => 'User not logged in']);
+        exit;
+    }
+
+    $current_user_id = $_SESSION['user_id'];
     $data = json_decode(file_get_contents('php://input'), true);
 
-    // Current logged-in user ID ko retrieve karna
-    $current_user_id = get_current_user_id();
+    // Sanitize and retrieve form data
+    $portfolio_name = filter_var($data['portfolio_name'], FILTER_SANITIZE_STRING);
+    $full_name = filter_var($data['full_name'], FILTER_SANITIZE_STRING);
+    $strategy_goal = isset($data['strategy_goal']) ? filter_var($data['strategy_goal'], FILTER_SANITIZE_STRING) : '';
 
-    // Form data ko retrieve karna
-    $portfolio_name = sanitize_text_field($data['portfolio_name']);
-    $full_name = sanitize_text_field($data['full_name']);
-    $strategy_goal = isset($data['strategy_goal']) ? sanitize_text_field($data['strategy_goal']) : '';
-
-    // Data ko custom table mein insert karna
-    $table_name = $wpdb->prefix . 'user_portfolios';
-    $result = $wpdb->insert(
-        $table_name,
-        array(
-            'user_id' => $current_user_id,
-            'portfolio_name' => $portfolio_name,
-            'full_name' => $full_name,
-            'strategy_goal' => $strategy_goal
-        )
-    );
-
-    // Response send karna
-    if ($result) {
+    // Insert data into custom table
+    $query = "INSERT INTO user_portfolios (user_id, portfolio_name, full_name, strategy_goal) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("isss", $current_user_id, $portfolio_name, $full_name, $strategy_goal);
+    
+    if ($stmt->execute()) {
         echo json_encode(['status' => 'success', 'message' => 'Portfolio saved successfully']);
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Failed to save portfolio']);
     }
+
+    $stmt->close();
+    $conn->close();
 }
 ?>
