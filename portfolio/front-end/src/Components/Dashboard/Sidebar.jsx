@@ -16,18 +16,19 @@ function Sidebar({ onUserClick, activeUser }) {
   const [error, setError] = useState('');
   const [users, setUsers] = useState([]); // State to store fetched users
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await axios.get('http://localhost/portfolio/backend/save_portfolio_user.php');
-        setUsers(response.data.users); // Assuming the response contains a users array
-      } catch (error) {
-        console.error('There was an error fetching the users!', error);
-      }
-    };
-    fetchUsers();
+ 
+  const fetchUsers = useCallback(async () => {
+    try {
+      const response = await axios.get('http://localhost/portfolio/backend/save_portfolio_user.php');
+      setUsers(response.data); // Assuming the response contains a users array
+    } catch (error) {
+      console.error('There was an error fetching the users!', error);
+    }
   }, []);
 
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]);
   const handleSave = useCallback(async (e) => {
     e.preventDefault();
     if (!portfolioName) {
@@ -49,6 +50,7 @@ function Sidebar({ onUserClick, activeUser }) {
       // handle success, show a success message or close modal
       setLoading(false);
       handleClose();
+      fetchUsers();
     } catch (error) {
       console.error('There was an error saving the data!', error);
       setError('There was an error saving the data!');
@@ -76,11 +78,11 @@ function Sidebar({ onUserClick, activeUser }) {
       </div>
       {users.map((user) => (
         <div
-          key={user}
-          className={`sidebar-item ${activeUser === user ? "active" : ""}`}
-          onClick={() => onUserClick(user)}
+          key={user.id}
+          className={`sidebar-item ${activeUser === user.portfolio_name ? "active" : ""}`}
+          onClick={() => onUserClick(user.portfolio_name)}
         >
-          <p>{user}</p>
+          <p>{user.portfolio_name}</p>
         </div>
       ))}
       <button className="btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleShow}>

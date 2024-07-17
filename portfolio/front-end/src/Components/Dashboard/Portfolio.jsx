@@ -1,7 +1,7 @@
 import React from 'react';
 
 const portfolioData = {
-  User: [
+  User2: [
     { name: 'HDFC Nifty PSU Bank ETF', qty: 20, avgPrice: 101.00, invested: 12020.00, currentPrice: 80.039, todaysGain: 236.20, unrealisedGain: 68019.40, currentValue: 80039.40 },
     { name: 'SBI-ETF Nifty Next 50', qty: 100, avgPrice: 100.00, invested: 10000.00, currentPrice: 785.52, todaysGain: 244.00, unrealisedGain: 68552.00, currentValue: 78552.00 }
   ],
@@ -12,6 +12,9 @@ const portfolioData = {
     { name: 'XYZ Corp', qty: 30, avgPrice: 300.00, invested: 9000.00, currentPrice: 350.00, todaysGain: 150.00, unrealisedGain: 1500.00, currentValue: 10500.00 }
   ],
   user3: [
+    { name: 'LMN Inc', qty: 40, avgPrice: 150.00, invested: 6000.00, currentPrice: 175.00, todaysGain: 200.00, unrealisedGain: 1000.00, currentValue: 7000.00 }
+  ],
+  user4: [
     { name: 'LMN Inc', qty: 40, avgPrice: 150.00, invested: 6000.00, currentPrice: 175.00, todaysGain: 200.00, unrealisedGain: 1000.00, currentValue: 7000.00 }
   ]
 };

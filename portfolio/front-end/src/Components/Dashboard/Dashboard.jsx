@@ -4,6 +4,7 @@ import Portfolio from './Portfolio';
 import './Dash.scss';
 import Navbars from './Navbar';
 import Header from './Header';
+import DashHead from './DashHead';
 
 function Dashboard() {
   const [activeUser, setActiveUser] = useState('Family Group');
@@ -13,12 +14,15 @@ function Dashboard() {
   };
 
   return (
-    <>
+    <div className='app'>
     <Navbars />
 <Header />
-    <div className="app container-fluid">
+    <div className=" container-fluid">
+      <div className="row">
+        <DashHead/>
+      </div>
       <div className='row'>
-        <div className='col-2'>
+        <div className='col-2 sidebar-container'>
       <Sidebar onUserClick={handleUserClick} activeUser={activeUser} />
       
       </div>
@@ -28,7 +32,7 @@ function Dashboard() {
       </div>
       </div>
     </div>
-    </>
+    </div>
   );
 }
 
