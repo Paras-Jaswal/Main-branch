@@ -55,7 +55,7 @@ const Login = () => {
 
         if (response.data.status === 'success') {
           localStorage.setItem('authToken', response.data.token);
-          console.log(response.data.token);
+          localStorage.setItem('Id', response.data.id);
           navigate('/dashboard');
         } else {
           toast.error('Invalid email or password');
