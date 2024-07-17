@@ -131,16 +131,40 @@ position: sticky;
       }
 
       // navbar
-      
-        .navbar {
+      .header-menu
+ {        .navbar {
           background-color: #022b54;
-        .nav-link, .nav-item {
+        .nav-link, .nav-item, .btn {
           text-decoration: none;
         color:white !important; 
 
-        }}
-
-
+        }}}
+// search-menu 
+.search-menu {
+  width: 100%;
+    background-color: #e1eef2;
+    height: 56px;
+    border-bottom: 1px solid #d6d6d6;
+    padding: 0 20px;
+    .navbar-brand {
+      color:#013d79
+    }
+    .search-input{
+      width: 280px;
+      height: 36px;
+      padding: 0 34px 0 44px;
+      background-color: #fff !important;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      position: relative;
+      z-index: 201;
+    }
+    svg {
+      margin-right: -29px;
+      z-index: 9999;
+    }
+}
         // Login-form {
         .login-form {
           background-color: #043d75;

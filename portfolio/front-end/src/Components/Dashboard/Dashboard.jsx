@@ -3,6 +3,7 @@ import Sidebar from './Sidebar';
 import Portfolio from './Portfolio';
 import './Dash.scss';
 import Navbars from './Navbar';
+import Header from './Header';
 
 function Dashboard() {
   const [activeUser, setActiveUser] = useState('Family Group');
@@ -14,7 +15,7 @@ function Dashboard() {
   return (
     <>
     <Navbars />
-
+<Header />
     <div className="app container-fluid">
       <div className='row'>
         <div className='col-2'>

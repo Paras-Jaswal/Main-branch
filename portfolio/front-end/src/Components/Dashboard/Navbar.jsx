@@ -21,6 +21,7 @@ function Navbars() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
+    <section className="header-menu">
     <Navbar>
       <Container fluid>
         <Navbar.Brand > <NavLink to='/' className='nav-link'>Market Portfolio </NavLink> </Navbar.Brand>
@@ -71,6 +72,7 @@ function Navbars() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    </section>
   );
 }
 
