@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Collapse from 'react-bootstrap/Collapse';
@@ -14,8 +14,19 @@ function Sidebar({ onUserClick, activeUser }) {
   const [strategyGoal, setStrategyGoal] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [users, setUsers] = useState([]); // State to store fetched users
 
-  const users = ["User", "User1", "User4", "user3"];
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get('http://localhost/portfolio/backend/save_portfolio_user.php');
+        setUsers(response.data.users); // Assuming the response contains a users array
+      } catch (error) {
+        console.error('There was an error fetching the users!', error);
+      }
+    };
+    fetchUsers();
+  }, []);
 
   const handleSave = useCallback(async (e) => {
     e.preventDefault();
